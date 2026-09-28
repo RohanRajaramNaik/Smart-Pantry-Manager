@@ -76,16 +76,16 @@ public class AllRecipesAdapter extends RecyclerView.Adapter<AllRecipesAdapter.Al
         // Pick colours
         if (missing == 0) {
             holder.tagText.setText("Can make");
-            holder.tagText.setBackgroundResource(R.drawable.bg_pill_have);
-            holder.tagText.setTextColor(context.getColor(R.color.pill_have_text));
+            holder.tagText.setBackgroundResource(R.drawable.tag_accent);
+            holder.tagText.setTextColor(context.getColor(R.color.tag_accent_text));
         } else if (missing == 1) {
             holder.tagText.setText("Missing 1");
-            holder.tagText.setBackgroundResource(R.drawable.bg_pill_need);
-            holder.tagText.setTextColor(context.getColor(R.color.pill_need_text));
+            holder.tagText.setBackgroundResource(R.drawable.tag_warning);
+            holder.tagText.setTextColor(context.getColor(R.color.tag_warning_text));
         } else {
             holder.tagText.setText("Missing " + missing);
-            holder.tagText.setBackgroundResource(R.drawable.bg_pill_missing);
-            holder.tagText.setTextColor(context.getColor(R.color.pill_missing_text));
+            holder.tagText.setBackgroundResource(R.drawable.tag_danger);
+            holder.tagText.setTextColor(context.getColor(R.color.tag_danger_text));
         }
     }
 }

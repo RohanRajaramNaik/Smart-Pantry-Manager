@@ -3,21 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/card_bg"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/bg_page"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/space_page">
 
         <TextView
             android:id="@+id/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
+            android:paddingBottom="@dimen/space_page"
             android:text="Suggested Recipes"
             style="@style/TextTitle" />
 
@@ -41,11 +43,12 @@
                     android:id="@+id/emptyText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="32dp"
+                    android:padding="@dimen/space_page"
                     android:text="No recipes match your pantry yet. Add more ingredients."
                     android:textAlignment="center"
-                    style="@style/TextBody"
-                    android:visibility="gone" />
+                    android:textColor="@color/text_secondary"
+                    android:visibility="gone"
+                    style="@style/TextBody" />
 
                 <LinearLayout
                     android:id="@+id/almostSection"
@@ -57,8 +60,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="8dp"
+                        android:paddingTop="@dimen/space_medium"
+                        android:paddingBottom="@dimen/space_card_gap"
                         android:text="Almost There (missing 1 ingredient)"
                         style="@style/TextHeading" />
 
@@ -72,10 +75,11 @@
                         android:id="@+id/almostEmptyText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
+                        android:padding="@dimen/space_medium"
                         android:text="No recipes are missing just one ingredient."
-                        style="@style/TextBody"
-                        android:visibility="gone" />
+                        android:textColor="@color/text_secondary"
+                        android:visibility="gone"
+                        style="@style/TextBody" />
 
                 </LinearLayout>
 
@@ -86,8 +90,9 @@
             android:id="@+id/browseButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Browse all recipes" />
+            android:layout_marginTop="@dimen/space_card_gap"
+            android:text="Browse all recipes"
+            style="@style/AppButtonOutlined" />
 
     </LinearLayout>
 
@@ -96,6 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"
+        style="@style/AppBottomNav" />
 
 </LinearLayout>

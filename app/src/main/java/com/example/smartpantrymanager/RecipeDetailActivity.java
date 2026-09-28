@@ -125,19 +125,19 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         // Have enough
         if (IngredientMatcher.hasIngredient(ingredient, pantry)) {
-            setTag(tag, "Have", R.drawable.bg_pill_have, R.color.pill_have_text);
+            setTag(tag, "Have", R.drawable.tag_accent, R.color.tag_accent_text);
             return true;
         }
 
         // Some but not enough
         if (haveAmount > 0) {
-            setTag(tag, makeNeedText(ingredient, haveAmount), R.drawable.bg_pill_need,
-                    R.color.pill_need_text);
+            setTag(tag, makeNeedText(ingredient, haveAmount), R.drawable.tag_warning,
+                    R.color.tag_warning_text);
             return false;
         }
 
         // None
-        setTag(tag, "Missing", R.drawable.bg_pill_missing, R.color.pill_missing_text);
+        setTag(tag, "Missing", R.drawable.tag_danger, R.color.tag_danger_text);
         return false;
     }
 

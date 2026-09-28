@@ -192,9 +192,9 @@ public class HomeActivity extends AppCompatActivity {
 
         // Warning or danger
         if (ExpiryHelper.getStatus(item.getExpiryDate()) == ExpiryHelper.EXPIRY_PASSED) {
-            statusText.setTextColor(getColor(R.color.alert_red));
+            statusText.setTextColor(getColor(R.color.danger));
         } else {
-            statusText.setTextColor(getColor(R.color.pill_need_text));
+            statusText.setTextColor(getColor(R.color.tag_warning_text));
         }
         expiringContainer.addView(row);
     }

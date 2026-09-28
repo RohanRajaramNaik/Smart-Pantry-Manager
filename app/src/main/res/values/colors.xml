@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#2E7D32</color>
-    <color name="on_primary">#FFFFFF</color>
-    <color name="background">#F6FAF3</color>
-    <color name="card_background">#E6EFE1</color>
-    <color name="nav_background">#EAF1E6</color>
-    <color name="nav_indicator">#C8E6C9</color>
+    <color name="accent">#2E7D32</color>
+    <color name="on_accent">#FFFFFF</color>
+    <color name="bg_page">#F4F7F4</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="card_border">#DDE5DD</color>
     <color name="text_primary">#1B1F1A</color>
-    <color name="text_secondary">#4A5349</color>
-    <color name="alert_red">#C62828</color>
-    <color name="pill_have_bg">#C8E6C9</color>
-    <color name="pill_have_text">#1B5E20</color>
-    <color name="pill_need_bg">#FFE0B2</color>
-    <color name="pill_need_text">#7A4100</color>
-    <color name="pill_missing_bg">#FFCDD2</color>
-    <color name="pill_missing_text">#B71C1C</color>
+    <color name="text_secondary">#5C685C</color>
+    <color name="danger">#C62828</color>
+    <color name="tag_accent_bg">#DDF0DE</color>
+    <color name="tag_accent_text">#1B5E20</color>
+    <color name="tag_warning_bg">#FFEBCC</color>
+    <color name="tag_warning_text">#8A4B00</color>
+    <color name="tag_danger_bg">#FCE0E0</color>
+    <color name="tag_danger_text">#B3261E</color>
 </resources>

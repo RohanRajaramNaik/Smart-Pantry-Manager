@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/bg_pantry_row"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_marginBottom="@dimen/space_card_gap"
+    style="@style/AppCard">
 
-    <TextView
-        android:id="@+id/nameText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextItemName" />
+        android:orientation="vertical"
+        android:padding="@dimen/space_card_padding">
 
-    <TextView
-        android:id="@+id/quantityText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        style="@style/TextBody" />
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextItemName" />
 
-    <TextView
-        android:id="@+id/expiryText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        style="@style/TextSmall" />
+        <TextView
+            android:id="@+id/quantityText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_small"
+            style="@style/TextBody" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/expiryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_small"
+            style="@style/TextSmall" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

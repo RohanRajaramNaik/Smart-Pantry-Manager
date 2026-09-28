@@ -1,80 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/card_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/bg_page"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/space_page">
 
         <TextView
             android:id="@+id/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
+            android:paddingBottom="@dimen/space_page"
             android:text="Add Ingredient"
             style="@style/TextTitle" />
 
-        <EditText
-            android:id="@+id/nameEdit"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:inputType="textCapWords"
-            android:minHeight="48dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <EditText
-            android:id="@+id/quantityEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Quantity"
-            android:inputType="numberDecimal"
-            android:minHeight="48dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/unitEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="g, kg, ml, l, cup, tbsp, tsp, pcs"
-            android:inputType="textNoSuggestions"
-            android:minHeight="48dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_small"
+                    android:text="Name"
+                    style="@style/TextFieldLabel" />
 
-        <ToggleButton
-            android:id="@+id/expiryToggle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textOff="Has expiry date: No"
-            android:textOn="Has expiry date: Yes" />
+                <EditText
+                    android:id="@+id/nameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    style="@style/AppInput" />
 
-        <DatePicker
-            android:id="@+id/expiryPicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"
-            android:visibility="gone" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/space_card_gap"
+                    android:paddingBottom="@dimen/space_small"
+                    android:text="Quantity"
+                    style="@style/TextFieldLabel" />
 
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Save" />
+                <EditText
+                    android:id="@+id/quantityEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    style="@style/AppInput" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/space_card_gap"
+                    android:paddingBottom="@dimen/space_small"
+                    android:text="Unit"
+                    style="@style/TextFieldLabel" />
+
+                <EditText
+                    android:id="@+id/unitEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="g, kg, ml, l, cup, tbsp, tsp, pcs"
+                    android:inputType="textNoSuggestions"
+                    style="@style/AppInput" />
+
+                <ToggleButton
+                    android:id="@+id/expiryToggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_page"
+                    android:textOff="Has expiry date: No"
+                    android:textOn="Has expiry date: Yes"
+                    style="@style/AppToggle" />
+
+                <DatePicker
+                    android:id="@+id/expiryPicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </ScrollView>
 
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/space_card_gap"
             android:text="Delete"
-            android:visibility="gone" />
+            android:visibility="gone"
+            style="@style/AppButtonDanger" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_card_gap"
+            android:text="Save" />
 
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

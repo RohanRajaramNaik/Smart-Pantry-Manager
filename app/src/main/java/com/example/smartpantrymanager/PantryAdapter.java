@@ -92,7 +92,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
 
     private void showAlert(PantryViewHolder holder, int status) {
         String text = holder.expiryText.getText().toString();
-        int red = holder.itemView.getContext().getColor(R.color.alert_red);
+        int red = holder.itemView.getContext().getColor(R.color.danger);
 
         // Red text
         if (status == ExpiryHelper.EXPIRY_SOON) {

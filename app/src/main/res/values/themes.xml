@@ -3,55 +3,134 @@
 
     <!-- App theme -->
     <style name="Theme.SmartPantryManager" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorOnPrimary">@color/on_primary</item>
-        <item name="android:colorBackground">@color/background</item>
-        <item name="colorSurface">@color/background</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorOnPrimary">@color/on_accent</item>
+        <item name="colorSurface">@color/card_bg</item>
         <item name="colorOnSurface">@color/text_primary</item>
         <item name="colorOnSurfaceVariant">@color/text_secondary</item>
-        <item name="colorSurfaceContainer">@color/nav_background</item>
-        <item name="colorSecondaryContainer">@color/nav_indicator</item>
-        <item name="colorOnSecondaryContainer">@color/text_primary</item>
+        <item name="colorSurfaceContainer">@color/card_bg</item>
+        <item name="colorSecondaryContainer">@color/tag_accent_bg</item>
+        <item name="colorOnSecondaryContainer">@color/accent</item>
+        <item name="android:colorBackground">@color/bg_page</item>
+        <item name="android:windowBackground">@color/bg_page</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:statusBarColor">@color/card_bg</item>
+        <item name="android:navigationBarColor">@color/card_bg</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="materialButtonStyle">@style/AppButton</item>
+        <item name="materialButtonOutlinedStyle">@style/AppButtonOutlined</item>
     </style>
 
     <!-- Text sizes -->
     <style name="TextTitle">
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">@dimen/text_title</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextHeading">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/text_heading</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextItemName">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_item_name</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextLabel">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_label</item>
     </style>
 
     <style name="TextBody">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/text_body</item>
     </style>
 
     <style name="TextSmall">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_small</item>
     </style>
 
     <style name="TextStat">
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">@dimen/text_stat</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextPill">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_tag</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextFieldLabel">
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Cards -->
+    <style name="AppCard" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/card_bg</item>
+        <item name="cardCornerRadius">@dimen/card_corner</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="strokeColor">@color/card_border</item>
+        <item name="strokeWidth">@dimen/card_stroke</item>
+    </style>
+
+    <!-- Buttons -->
+    <style name="AppButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/accent</item>
+        <item name="android:textColor">@color/on_accent</item>
+        <item name="android:textSize">@dimen/text_button</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="cornerRadius">@dimen/button_corner</item>
+    </style>
+
+    <style name="AppButtonOutlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/accent</item>
+        <item name="strokeWidth">@dimen/card_stroke</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textSize">@dimen/text_button</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="cornerRadius">@dimen/button_corner</item>
+    </style>
+
+    <style name="AppButtonDanger" parent="AppButton">
+        <item name="backgroundTint">@color/danger</item>
+    </style>
+
+    <style name="AppButtonText" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textSize">@dimen/text_button</item>
+    </style>
+
+    <!-- Form fields -->
+    <style name="AppInput">
+        <item name="android:background">@drawable/bg_input</item>
+        <item name="android:minHeight">@dimen/input_height</item>
+        <item name="android:paddingStart">@dimen/space_card_padding</item>
+        <item name="android:paddingEnd">@dimen/space_card_padding</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <style name="AppToggle">
+        <item name="android:background">@drawable/bg_toggle</item>
+        <item name="android:textColor">@color/toggle_text</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minHeight">@dimen/toggle_height</item>
+        <item name="android:minWidth">@dimen/toggle_width</item>
+    </style>
+
+    <!-- Bottom navigation -->
+    <style name="AppBottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@color/card_bg</item>
+        <item name="elevation">@dimen/card_elevation</item>
+        <item name="android:elevation">@dimen/card_elevation</item>
+        <item name="itemIconTint">@color/nav_item</item>
+        <item name="itemTextColor">@color/nav_item</item>
     </style>
 
 </resources>

@@ -3,72 +3,86 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/card_bg"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/bg_page"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/space_page">
 
         <TextView
             android:id="@+id/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
+            android:paddingBottom="@dimen/space_page"
             android:text="Settings"
             style="@style/TextTitle" />
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bg_pantry_row"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            android:layout_marginBottom="@dimen/space_card_gap"
+            style="@style/AppCard">
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Expiring-soon alerts"
-                style="@style/TextLabel" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_card_padding">
 
-            <ToggleButton
-                android:id="@+id/expiryAlertsToggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="OFF"
-                android:textOn="ON" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Expiring-soon alerts"
+                    style="@style/TextLabel" />
 
-        </LinearLayout>
+                <ToggleButton
+                    android:id="@+id/expiryAlertsToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="OFF"
+                    android:textOn="ON"
+                    style="@style/AppToggle" />
 
-        <LinearLayout
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_pantry_row"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            style="@style/AppCard">
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Show Almost There list"
-                style="@style/TextLabel" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_card_padding">
 
-            <ToggleButton
-                android:id="@+id/almostThereToggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="OFF"
-                android:textOn="ON" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Show Almost There list"
+                    style="@style/TextLabel" />
 
-        </LinearLayout>
+                <ToggleButton
+                    android:id="@+id/almostThereToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="OFF"
+                    android:textOn="ON"
+                    style="@style/AppToggle" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
@@ -77,6 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"
+        style="@style/AppBottomNav" />
 
 </LinearLayout>
