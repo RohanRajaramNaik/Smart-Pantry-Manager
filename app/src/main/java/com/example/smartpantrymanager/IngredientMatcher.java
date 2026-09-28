@@ -1,6 +1,7 @@
 package com.example.smartpantrymanager;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class IngredientMatcher {
 
@@ -12,7 +13,7 @@ public class IngredientMatcher {
         }
 
         // Clean text
-        String cleanName = name.toLowerCase().trim();
+        String cleanName = name.toLowerCase(Locale.ROOT).trim();
         cleanName = collapseSpaces(cleanName);
 
         // Make singular
@@ -63,7 +64,7 @@ public class IngredientMatcher {
         if (unit == null) {
             return "";
         }
-        return unit.trim().toLowerCase();
+        return unit.trim().toLowerCase(Locale.ROOT);
     }
 
     public static String unitGroup(String unit) {

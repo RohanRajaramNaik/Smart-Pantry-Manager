@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
@@ -163,6 +164,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         if (name == null || name.isEmpty()) {
             return "";
         }
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
+        return name.substring(0, 1).toUpperCase(Locale.ROOT) + name.substring(1);
     }
 }

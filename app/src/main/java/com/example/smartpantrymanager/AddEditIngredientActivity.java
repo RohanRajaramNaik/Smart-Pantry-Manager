@@ -11,6 +11,8 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class AddEditIngredientActivity extends AppCompatActivity {
 
     private static final String[] ALLOWED_UNITS = {"g", "kg", "ml", "l", "cup", "tbsp", "tsp",
@@ -191,7 +193,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
     private PantryItem buildItem() {
         String name = nameEdit.getText().toString().trim();
         double quantity = parseQuantity(quantityEdit.getText().toString().trim());
-        String unit = unitEdit.getText().toString().trim().toLowerCase();
+        String unit = unitEdit.getText().toString().trim().toLowerCase(Locale.ROOT);
         return new PantryItem(0, name, quantity, unit, getExpiryDate());
     }
 
@@ -205,7 +207,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         int year = expiryPicker.getYear();
         int month = expiryPicker.getMonth() + 1;
         int day = expiryPicker.getDayOfMonth();
-        return String.format("%04d-%02d-%02d", year, month, day);
+        return String.format(Locale.US, "%04d-%02d-%02d", year, month, day);
     }
 
     private boolean checkName() {
@@ -265,7 +267,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
     }
 
     private boolean checkUnit() {
-        String unit = unitEdit.getText().toString().trim().toLowerCase();
+        String unit = unitEdit.getText().toString().trim().toLowerCase(Locale.ROOT);
 
         // Check empty
         if (unit.isEmpty()) {

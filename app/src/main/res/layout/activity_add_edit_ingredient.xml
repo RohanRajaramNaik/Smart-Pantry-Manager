@@ -36,6 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/space_small"
+                    android:labelFor="@+id/nameEdit"
                     android:text="Name"
                     style="@style/TextFieldLabel" />
 
@@ -43,6 +44,7 @@
                     android:id="@+id/nameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
                     android:inputType="textCapWords"
                     style="@style/AppInput" />
 
@@ -51,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/space_card_gap"
                     android:paddingBottom="@dimen/space_small"
+                    android:labelFor="@+id/quantityEdit"
                     android:text="Quantity"
                     style="@style/TextFieldLabel" />
 
@@ -58,6 +61,7 @@
                     android:id="@+id/quantityEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
                     android:inputType="numberDecimal"
                     style="@style/AppInput" />
 
@@ -66,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/space_card_gap"
                     android:paddingBottom="@dimen/space_small"
+                    android:labelFor="@+id/unitEdit"
                     android:text="Unit"
                     style="@style/TextFieldLabel" />
 
@@ -73,6 +78,7 @@
                     android:id="@+id/unitEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
                     android:hint="g, kg, ml, l, cup, tbsp, tsp, pcs"
                     android:inputType="textNoSuggestions"
                     style="@style/AppInput" />

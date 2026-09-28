@@ -177,18 +177,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private Recipe readRecipe(Cursor cursor) {
-        int id = cursor.getInt(cursor.getColumnIndex(COL_ID));
-        String name = cursor.getString(cursor.getColumnIndex(COL_NAME));
-        String steps = cursor.getString(cursor.getColumnIndex(COL_STEPS));
+        int id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
+        String name = cursor.getString(cursor.getColumnIndexOrThrow(COL_NAME));
+        String steps = cursor.getString(cursor.getColumnIndexOrThrow(COL_STEPS));
         return new Recipe(id, name, steps);
     }
 
     private RecipeIngredient readIngredient(Cursor cursor) {
-        int id = cursor.getInt(cursor.getColumnIndex(COL_ID));
-        int recipeId = cursor.getInt(cursor.getColumnIndex(COL_RECIPE_ID));
-        String name = cursor.getString(cursor.getColumnIndex(COL_NAME));
-        double quantity = cursor.getDouble(cursor.getColumnIndex(COL_QUANTITY));
-        String unit = cursor.getString(cursor.getColumnIndex(COL_UNIT));
+        int id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
+        int recipeId = cursor.getInt(cursor.getColumnIndexOrThrow(COL_RECIPE_ID));
+        String name = cursor.getString(cursor.getColumnIndexOrThrow(COL_NAME));
+        double quantity = cursor.getDouble(cursor.getColumnIndexOrThrow(COL_QUANTITY));
+        String unit = cursor.getString(cursor.getColumnIndexOrThrow(COL_UNIT));
         return new RecipeIngredient(id, recipeId, name, quantity, unit);
     }
 
@@ -202,11 +202,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private PantryItem readPantryItem(Cursor cursor) {
-        int id = cursor.getInt(cursor.getColumnIndex(COL_ID));
-        String name = cursor.getString(cursor.getColumnIndex(COL_NAME));
-        double quantity = cursor.getDouble(cursor.getColumnIndex(COL_QUANTITY));
-        String unit = cursor.getString(cursor.getColumnIndex(COL_UNIT));
-        String expiryDate = cursor.getString(cursor.getColumnIndex(COL_EXPIRY_DATE));
+        int id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
+        String name = cursor.getString(cursor.getColumnIndexOrThrow(COL_NAME));
+        double quantity = cursor.getDouble(cursor.getColumnIndexOrThrow(COL_QUANTITY));
+        String unit = cursor.getString(cursor.getColumnIndexOrThrow(COL_UNIT));
+        String expiryDate = cursor.getString(cursor.getColumnIndexOrThrow(COL_EXPIRY_DATE));
         return new PantryItem(id, name, quantity, unit, expiryDate);
     }
 }
