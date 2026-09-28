@@ -78,7 +78,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         }
     }
 
-    private String formatQuantity(double quantity) {
+    public static String formatQuantity(double quantity) {
         // Whole numbers without decimals
         if (quantity == (int) quantity) {
             return String.valueOf((int) quantity);
