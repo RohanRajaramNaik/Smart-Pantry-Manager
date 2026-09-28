@@ -147,6 +147,18 @@ public class IngredientMatcher {
         return missing;
     }
 
+    public static String getMissingIngredientName(Recipe recipe, ArrayList<PantryItem> pantry) {
+        ArrayList<RecipeIngredient> ingredients = recipe.getIngredients();
+
+        // Find first short ingredient
+        for (int i = 0; i < ingredients.size(); i++) {
+            if (!hasIngredient(ingredients.get(i), pantry)) {
+                return ingredients.get(i).getName();
+            }
+        }
+        return "";
+    }
+
     public static boolean canMake(Recipe recipe, ArrayList<PantryItem> pantry) {
         return countMissing(recipe, pantry) == 0;
     }

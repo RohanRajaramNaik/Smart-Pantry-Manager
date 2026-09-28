@@ -14,9 +14,16 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
     private ArrayList<Recipe> recipeList;
+    private ArrayList<String> missingList;
 
     public RecipeAdapter(ArrayList<Recipe> recipeList) {
         this.recipeList = recipeList;
+        this.missingList = null;
+    }
+
+    public RecipeAdapter(ArrayList<Recipe> recipeList, ArrayList<String> missingList) {
+        this.recipeList = recipeList;
+        this.missingList = missingList;
     }
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
@@ -44,7 +51,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         // Show recipe details
         holder.recipeNameText.setText(recipe.getName());
-        holder.ingredientCountText.setText(makeCountText(recipe.getIngredients().size()));
+        showSecondLine(holder, recipe, position);
 
         // Open detail screen
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +68,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @Override
     public int getItemCount() {
         return recipeList.size();
+    }
+
+    private void showSecondLine(RecipeViewHolder holder, Recipe recipe, int position) {
+        // Missing ingredient
+        if (missingList != null) {
+            holder.ingredientCountText.setText("Missing: " + missingList.get(position));
+        } else {
+            holder.ingredientCountText.setText(makeCountText(recipe.getIngredients().size()));
+        }
     }
 
     private String makeCountText(int count) {
