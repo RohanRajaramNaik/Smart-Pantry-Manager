@@ -44,6 +44,11 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="TextStat">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TextPill">
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>

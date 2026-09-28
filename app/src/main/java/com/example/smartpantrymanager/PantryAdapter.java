@@ -86,7 +86,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
 
         // Alert look
         if (showAlerts) {
-            showAlert(holder, item.getExpiryStatus());
+            showAlert(holder, ExpiryHelper.getStatus(item.getExpiryDate()));
         }
     }
 
@@ -95,10 +95,10 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         int red = holder.itemView.getContext().getColor(R.color.alert_red);
 
         // Red text
-        if (status == PantryItem.EXPIRY_SOON) {
+        if (status == ExpiryHelper.EXPIRY_SOON) {
             holder.expiryText.setText(text + " (expires soon)");
             holder.expiryText.setTextColor(red);
-        } else if (status == PantryItem.EXPIRY_PASSED) {
+        } else if (status == ExpiryHelper.EXPIRY_PASSED) {
             holder.expiryText.setText(text + " (expired)");
             holder.expiryText.setTextColor(red);
         }

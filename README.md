@@ -18,6 +18,7 @@ Many households throw away food every week. Some of it goes off before it is use
 - See which ingredients you have, need more of, or are missing
 - Browse all recipes, sorted by how close you are to making each one
 - Turn expiry alerts and the Almost There list on or off in Settings
+- See a home dashboard with your item count, recipes you can make and items that expire soon
 - Move between screens with a bottom navigation bar
 - Get a clear message when a form has empty or wrong input
 
@@ -41,6 +42,7 @@ This app uses SQLite with SQLiteOpenHelper. Here are three reasons:
 
 ## Screens
 
+- **Home (HomeActivity):** the first screen. It shows your item count, how many recipes you can make and what is expiring. Tap a card to see the full list.
 - **Pantry List (MainActivity):** shows all your pantry items. You can add, edit or delete an item from here.
 - **Add or Edit Ingredient (AddEditIngredientActivity):** a form to add a new item or change an existing one.
 - **Suggested Recipes (SuggestedRecipesActivity):** shows the recipes you can cook right now.

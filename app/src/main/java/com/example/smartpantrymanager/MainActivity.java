@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView pantryRecyclerView;
     private TextView emptyText;
     private DatabaseHelper databaseHelper;
+    private boolean showExpiringOnly;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +39,22 @@ public class MainActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
 
         // Set up screen
+        setUpFilter();
         setUpAddButton();
         setUpNavigation();
         showExpiryToast();
+    }
+
+    private void setUpFilter() {
+        // Read filter
+        String filter = getIntent().getStringExtra("filter");
+        showExpiringOnly = "expiring".equals(filter);
+
+        // Change title
+        if (showExpiringOnly) {
+            TextView titleText = findViewById(R.id.titleText);
+            titleText.setText("Expiring Soon");
+        }
     }
 
     private void setUpAddButton() {
@@ -72,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 int itemId = item.getItemId();
-                if (itemId == R.id.nav_recipes) {
+                if (itemId == R.id.nav_home) {
+                    openScreen(new Intent(MainActivity.this, HomeActivity.class));
+                } else if (itemId == R.id.nav_recipes) {
                     openScreen(new Intent(MainActivity.this, SuggestedRecipesActivity.class));
                 } else if (itemId == R.id.nav_settings) {
                     openScreen(new Intent(MainActivity.this, SettingsActivity.class));
@@ -92,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
         try {
             // Load from database
             ArrayList<PantryItem> pantryList = databaseHelper.getAllPantryItems();
+            if (showExpiringOnly) {
+                pantryList = ExpiryHelper.getExpiringItems(pantryList);
+            }
             pantryRecyclerView.setAdapter(new PantryAdapter(pantryList, alertsAreOn()));
             showEmptyMessage(pantryList.size());
         } catch (Exception e) {
@@ -126,7 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Count soon items
         for (int i = 0; i < pantryList.size(); i++) {
-            if (pantryList.get(i).getExpiryStatus() == PantryItem.EXPIRY_SOON) {
+            String expiryDate = pantryList.get(i).getExpiryDate();
+            if (ExpiryHelper.getStatus(expiryDate) == ExpiryHelper.EXPIRY_SOON) {
                 soonCount++;
             }
         }
@@ -134,6 +154,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showEmptyMessage(int itemCount) {
+        // Pick message
+        if (showExpiringOnly) {
+            emptyText.setText("Nothing is expiring soon.");
+        }
+
         // Show when no items
         if (itemCount == 0) {
             emptyText.setVisibility(View.VISIBLE);

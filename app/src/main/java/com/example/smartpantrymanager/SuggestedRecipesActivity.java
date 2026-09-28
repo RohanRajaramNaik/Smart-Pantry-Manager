@@ -77,7 +77,9 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 int itemId = item.getItemId();
-                if (itemId == R.id.nav_pantry) {
+                if (itemId == R.id.nav_home) {
+                    openScreen(new Intent(SuggestedRecipesActivity.this, HomeActivity.class));
+                } else if (itemId == R.id.nav_pantry) {
                     openScreen(new Intent(SuggestedRecipesActivity.this, MainActivity.class));
                 } else if (itemId == R.id.nav_settings) {
                     openScreen(new Intent(SuggestedRecipesActivity.this, SettingsActivity.class));
