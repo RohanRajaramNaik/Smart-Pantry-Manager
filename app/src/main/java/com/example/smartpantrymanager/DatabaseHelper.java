@@ -33,21 +33,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Pantry table
+        // Create tables
+        createPantryTable(db);
+        createRecipesTable(db);
+        createIngredientsTable(db);
+
+        // Seed recipes
+        RecipeSeeder.seedRecipes(db);
+    }
+
+    private void createPantryTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_PANTRY + " ("
                 + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_NAME + " TEXT, "
                 + COL_QUANTITY + " REAL, "
                 + COL_UNIT + " TEXT, "
                 + COL_EXPIRY_DATE + " TEXT)");
+    }
 
-        // Recipes table
+    private void createRecipesTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_RECIPES + " ("
                 + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_NAME + " TEXT, "
                 + COL_STEPS + " TEXT)");
+    }
 
-        // Recipe ingredients table
+    private void createIngredientsTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_RECIPE_INGREDIENTS + " ("
                 + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_RECIPE_ID + " INTEGER, "
@@ -110,6 +121,74 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int deletePantryItem(int id) {
         SQLiteDatabase db = getWritableDatabase();
         return db.delete(TABLE_PANTRY, COL_ID + " = ?", new String[]{String.valueOf(id)});
+    }
+
+    public ArrayList<Recipe> getAllRecipes() {
+        ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLE_RECIPES, null, null, null, null, null, COL_ID + " ASC");
+
+        // Read all rows
+        while (cursor.moveToNext()) {
+            recipeList.add(readRecipe(cursor));
+        }
+        cursor.close();
+
+        // Load ingredients
+        for (int i = 0; i < recipeList.size(); i++) {
+            Recipe recipe = recipeList.get(i);
+            recipe.setIngredients(getIngredientsForRecipe(recipe.getId()));
+        }
+        return recipeList;
+    }
+
+    public Recipe getRecipe(int id) {
+        Recipe recipe = null;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLE_RECIPES, null, COL_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null);
+
+        // Read one row
+        if (cursor.moveToFirst()) {
+            recipe = readRecipe(cursor);
+        }
+        cursor.close();
+
+        // Load ingredients
+        if (recipe != null) {
+            recipe.setIngredients(getIngredientsForRecipe(id));
+        }
+        return recipe;
+    }
+
+    private ArrayList<RecipeIngredient> getIngredientsForRecipe(int recipeId) {
+        ArrayList<RecipeIngredient> ingredientList = new ArrayList<RecipeIngredient>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLE_RECIPE_INGREDIENTS, null, COL_RECIPE_ID + " = ?",
+                new String[]{String.valueOf(recipeId)}, null, null, COL_ID + " ASC");
+
+        // Read all rows
+        while (cursor.moveToNext()) {
+            ingredientList.add(readIngredient(cursor));
+        }
+        cursor.close();
+        return ingredientList;
+    }
+
+    private Recipe readRecipe(Cursor cursor) {
+        int id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+        String name = cursor.getString(cursor.getColumnIndex(COL_NAME));
+        String steps = cursor.getString(cursor.getColumnIndex(COL_STEPS));
+        return new Recipe(id, name, steps);
+    }
+
+    private RecipeIngredient readIngredient(Cursor cursor) {
+        int id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+        int recipeId = cursor.getInt(cursor.getColumnIndex(COL_RECIPE_ID));
+        String name = cursor.getString(cursor.getColumnIndex(COL_NAME));
+        double quantity = cursor.getDouble(cursor.getColumnIndex(COL_QUANTITY));
+        String unit = cursor.getString(cursor.getColumnIndex(COL_UNIT));
+        return new RecipeIngredient(id, recipeId, name, quantity, unit);
     }
 
     private ContentValues makePantryValues(PantryItem item) {
