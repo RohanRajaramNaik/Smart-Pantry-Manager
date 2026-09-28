@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         pantryRecyclerView = findViewById(R.id.pantryRecyclerView);
         emptyText = findViewById(R.id.emptyText);
         Button addButton = findViewById(R.id.addButton);
+        Button suggestedButton = findViewById(R.id.suggestedButton);
 
         // Set up list
         pantryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -38,6 +39,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddEditIngredientActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Open suggested screen
+        suggestedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
                 startActivity(intent);
             }
         });

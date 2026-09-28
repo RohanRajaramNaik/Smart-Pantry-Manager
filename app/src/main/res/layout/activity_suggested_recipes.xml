@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:text="My Pantry"
+        android:text="Suggested Recipes"
         android:textSize="28sp"
         android:textStyle="bold" />
 
@@ -21,7 +21,7 @@
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pantryRecyclerView"
+            android:id="@+id/recipeRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -31,25 +31,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="16dp"
-            android:text="Your pantry is empty. Tap Add Ingredient."
+            android:text="No recipes match your pantry yet. Add more ingredients."
             android:textAlignment="center"
             android:textSize="16sp"
             android:visibility="gone" />
 
     </FrameLayout>
-
-    <Button
-        android:id="@+id/addButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Add Ingredient" />
-
-    <Button
-        android:id="@+id/suggestedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Suggested Recipes" />
 
 </LinearLayout>

@@ -12,6 +12,12 @@
             android:name=".AddEditIngredientActivity"
             android:exported="false" />
         <activity
+            android:name=".SuggestedRecipesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecipeDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
