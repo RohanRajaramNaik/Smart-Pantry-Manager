@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "smart_pantry.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Table names
     public static final String TABLE_PANTRY = "pantry";
@@ -69,13 +69,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop tables
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PANTRY);
+        // Drop recipe tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPE_INGREDIENTS);
 
-        // Create again
-        onCreate(db);
+        // Rebuild recipes
+        createRecipesTable(db);
+        createIngredientsTable(db);
+        RecipeSeeder.seedRecipes(db);
     }
 
     public long addPantryItem(PantryItem item) {

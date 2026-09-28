@@ -11,7 +11,7 @@ Many households throw away food every week. Some of it goes off before it is use
 - Add, view, edit and delete pantry items
 - Save the name, amount, unit and expiry date of each item
 - Keep your data after the app is closed
-- Get recipe suggestions from 18 built-in recipes
+- Get recipe suggestions from 40 built-in recipes
 - See a recipe only when you have every ingredient in the right amount
 - See an "Almost There" list of recipes that are missing just one ingredient
 - View the ingredients and steps for each recipe
