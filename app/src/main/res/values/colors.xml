@@ -9,4 +9,10 @@
     <color name="text_primary">#1B1F1A</color>
     <color name="text_secondary">#4A5349</color>
     <color name="alert_red">#C62828</color>
+    <color name="pill_have_bg">#C8E6C9</color>
+    <color name="pill_have_text">#1B5E20</color>
+    <color name="pill_need_bg">#FFE0B2</color>
+    <color name="pill_need_text">#7A4100</color>
+    <color name="pill_missing_bg">#FFCDD2</color>
+    <color name="pill_missing_text">#B71C1C</color>
 </resources>

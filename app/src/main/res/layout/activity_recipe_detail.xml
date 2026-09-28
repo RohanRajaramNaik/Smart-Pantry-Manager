@@ -30,12 +30,18 @@
                 style="@style/TextHeading" />
 
             <TextView
-                android:id="@+id/ingredientsText"
+                android:id="@+id/summaryText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:lineSpacingExtra="4dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="12dp"
                 style="@style/TextBody" />
+
+            <LinearLayout
+                android:id="@+id/ingredientsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
             <TextView
                 android:layout_width="match_parent"

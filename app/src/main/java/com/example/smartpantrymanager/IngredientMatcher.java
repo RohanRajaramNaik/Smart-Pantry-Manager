@@ -126,6 +126,18 @@ public class IngredientMatcher {
         return total;
     }
 
+    public static double getPantryAmountInUnit(RecipeIngredient ingredient,
+                                               ArrayList<PantryItem> pantry) {
+        double baseAmount = pantryAmountFor(ingredient, pantry);
+        double oneUnit = toBaseAmount(1, ingredient.getUnit());
+
+        // Back to recipe unit
+        if (oneUnit == 0) {
+            return 0;
+        }
+        return baseAmount / oneUnit;
+    }
+
     public static boolean hasIngredient(RecipeIngredient ingredient, ArrayList<PantryItem> pantry) {
         double needed = toBaseAmount(ingredient.getQuantity(), ingredient.getUnit());
         double have = pantryAmountFor(ingredient, pantry);
