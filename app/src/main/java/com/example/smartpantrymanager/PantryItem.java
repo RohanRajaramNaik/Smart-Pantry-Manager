@@ -72,24 +72,29 @@ public class PantryItem {
         }
 
         try {
-            // Days until expiry
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-            format.setLenient(false);
-            Date expiry = format.parse(expiryDate);
-            long difference = expiry.getTime() - getTodayAtMidnight().getTimeInMillis();
-            long daysLeft = Math.round(difference / 86400000.0);
-
             // Check status
-            if (daysLeft < 0) {
-                return EXPIRY_PASSED;
-            }
-            if (daysLeft <= 3) {
-                return EXPIRY_SOON;
-            }
-            return EXPIRY_NONE;
+            return statusForDays(getDaysLeft());
         } catch (Exception e) {
             return EXPIRY_NONE;
         }
+    }
+
+    private long getDaysLeft() throws Exception {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        format.setLenient(false);
+        Date expiry = format.parse(expiryDate);
+        long difference = expiry.getTime() - getTodayAtMidnight().getTimeInMillis();
+        return Math.round(difference / 86400000.0);
+    }
+
+    private int statusForDays(long daysLeft) {
+        if (daysLeft < 0) {
+            return EXPIRY_PASSED;
+        }
+        if (daysLeft <= 3) {
+            return EXPIRY_SOON;
+        }
+        return EXPIRY_NONE;
     }
 
     private Calendar getTodayAtMidnight() {

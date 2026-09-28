@@ -32,11 +32,19 @@ public class MainActivity extends AppCompatActivity {
         // Find views
         pantryRecyclerView = findViewById(R.id.pantryRecyclerView);
         emptyText = findViewById(R.id.emptyText);
-        Button addButton = findViewById(R.id.addButton);
 
         // Set up list
         pantryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         databaseHelper = new DatabaseHelper(this);
+
+        // Set up screen
+        setUpAddButton();
+        setUpNavigation();
+        showExpiryToast();
+    }
+
+    private void setUpAddButton() {
+        Button addButton = findViewById(R.id.addButton);
 
         // Open add screen
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -46,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        setUpNavigation();
-        showExpiryToast();
     }
 
     @Override

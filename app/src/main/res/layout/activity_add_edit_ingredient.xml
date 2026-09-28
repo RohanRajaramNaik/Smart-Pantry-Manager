@@ -17,8 +17,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="Add Ingredient"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            style="@style/TextTitle" />
 
         <EditText
             android:id="@+id/nameEdit"

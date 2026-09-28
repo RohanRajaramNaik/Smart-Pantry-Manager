@@ -11,14 +11,13 @@
         android:id="@+id/recipeNameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        style="@style/TextItemName" />
 
     <TextView
         android:id="@+id/ingredientCountText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textSize="16sp" />
+        style="@style/TextBody" />
 
 </LinearLayout>

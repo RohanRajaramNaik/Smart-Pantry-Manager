@@ -2,7 +2,6 @@ package com.example.smartpantrymanager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,21 +92,22 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
 
     private void showAlert(PantryViewHolder holder, int status) {
         String text = holder.expiryText.getText().toString();
+        int red = holder.itemView.getContext().getColor(R.color.alert_red);
 
         // Red text
         if (status == PantryItem.EXPIRY_SOON) {
             holder.expiryText.setText(text + " (expires soon)");
-            holder.expiryText.setTextColor(Color.parseColor("#C62828"));
+            holder.expiryText.setTextColor(red);
         } else if (status == PantryItem.EXPIRY_PASSED) {
             holder.expiryText.setText(text + " (expired)");
-            holder.expiryText.setTextColor(Color.parseColor("#C62828"));
+            holder.expiryText.setTextColor(red);
         }
     }
 
     public static String formatQuantity(double quantity) {
         // Whole numbers without decimals
-        if (quantity == (int) quantity) {
-            return String.valueOf((int) quantity);
+        if (quantity == (long) quantity) {
+            return String.valueOf((long) quantity);
         }
         return String.valueOf(quantity);
     }

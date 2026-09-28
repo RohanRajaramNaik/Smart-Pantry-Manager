@@ -25,6 +25,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
         recipeNameText = findViewById(R.id.recipeNameText);
         ingredientsText = findViewById(R.id.ingredientsText);
         stepsText = findViewById(R.id.stepsText);
+
+        // Set up screen
+        setUpBackButton();
+        openRecipe();
+    }
+
+    private void setUpBackButton() {
         Button backButton = findViewById(R.id.backButton);
 
         // Close screen
@@ -34,7 +41,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
+    private void openRecipe() {
         // Get recipe id
         int recipeId = getIntent().getIntExtra("recipe_id", -1);
         if (recipeId == -1) {

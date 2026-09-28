@@ -16,6 +16,8 @@ public class AddEditIngredientActivity extends AppCompatActivity {
     private static final String[] ALLOWED_UNITS = {"g", "kg", "ml", "l", "cup", "tbsp", "tsp",
             "pcs", "piece", "pieces", "item", "whole"};
 
+    private static final double MAX_QUANTITY = 100000;
+
     private TextView titleText;
     private EditText nameEdit;
     private EditText quantityEdit;
@@ -72,7 +74,10 @@ public class AddEditIngredientActivity extends AppCompatActivity {
                 showPicker(expiryToggle.isChecked());
             }
         });
+        setUpButtons();
+    }
 
+    private void setUpButtons() {
         // Save item
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +170,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
                 databaseHelper.updatePantryItem(item);
                 Toast.makeText(this, "Ingredient updated", Toast.LENGTH_SHORT).show();
             }
+            saveButton.setEnabled(false);
             finish();
         } catch (Exception e) {
             Toast.makeText(this, "Could not save ingredient", Toast.LENGTH_SHORT).show();
@@ -175,6 +181,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         try {
             databaseHelper.deletePantryItem(pantryId);
             Toast.makeText(this, "Ingredient deleted", Toast.LENGTH_SHORT).show();
+            deleteButton.setEnabled(false);
             finish();
         } catch (Exception e) {
             Toast.makeText(this, "Could not delete ingredient", Toast.LENGTH_SHORT).show();
@@ -231,8 +238,15 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         }
 
         // Check number
-        if (parseQuantity(text) <= 0) {
+        double number = parseQuantity(text);
+        if (number <= 0) {
             quantityEdit.setError("Enter a number above 0");
+            return false;
+        }
+
+        // Check size
+        if (number > MAX_QUANTITY) {
+            quantityEdit.setError("Enter a number up to 100000");
             return false;
         }
         return true;

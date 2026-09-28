@@ -21,15 +21,13 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                style="@style/TextTitle" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ingredients"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                style="@style/TextHeading" />
 
             <TextView
                 android:id="@+id/ingredientsText"
@@ -37,15 +35,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="4dp"
-                android:textSize="16sp" />
+                style="@style/TextBody" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Method"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                style="@style/TextHeading" />
 
             <TextView
                 android:id="@+id/stepsText"
@@ -53,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="4dp"
-                android:textSize="16sp" />
+                style="@style/TextBody" />
 
         </LinearLayout>
     </ScrollView>

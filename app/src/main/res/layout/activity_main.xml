@@ -19,8 +19,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="My Pantry"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            style="@style/TextTitle" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -40,7 +39,7 @@
                 android:padding="16dp"
                 android:text="Your pantry is empty. Tap Add Ingredient."
                 android:textAlignment="center"
-                android:textSize="16sp"
+                style="@style/TextBody"
                 android:visibility="gone" />
 
         </FrameLayout>
