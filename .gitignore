@@ -1,0 +1,17 @@
+# Claude rules
+CLAUDE.md
+.claude/
+
+# Android Studio
+.idea/
+*.iml
+.gradle/
+build/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+# OS files
+.DS_Store
+Thumbs.db
