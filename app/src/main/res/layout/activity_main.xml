@@ -1,55 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:text="My Pantry"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pantryRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/emptyText"
-            android:layout_width="wrap_content"
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="16dp"
-            android:text="Your pantry is empty. Tap Add Ingredient."
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:visibility="gone" />
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="My Pantry"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
-    </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    <Button
-        android:id="@+id/addButton"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pantryRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/emptyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="16dp"
+                android:text="Your pantry is empty. Tap Add Ingredient."
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Add Ingredient" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Add Ingredient" />
-
-    <Button
-        android:id="@+id/suggestedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Suggested Recipes" />
+        app:menu="@menu/bottom_nav_menu" />
 
 </LinearLayout>

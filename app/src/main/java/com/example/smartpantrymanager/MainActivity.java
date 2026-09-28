@@ -2,6 +2,7 @@ package com.example.smartpantrymanager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,6 +11,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
@@ -28,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         pantryRecyclerView = findViewById(R.id.pantryRecyclerView);
         emptyText = findViewById(R.id.emptyText);
         Button addButton = findViewById(R.id.addButton);
-        Button suggestedButton = findViewById(R.id.suggestedButton);
 
         // Set up list
         pantryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -42,21 +45,39 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // Open suggested screen
-        suggestedButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
-                startActivity(intent);
-            }
-        });
+        setUpNavigation();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         loadPantryList();
+    }
+
+    private void setUpNavigation() {
+        // Mark current screen
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setSelectedItemId(R.id.nav_pantry);
+
+        // Open other screens
+        bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.nav_recipes) {
+                    openScreen(new Intent(MainActivity.this, SuggestedRecipesActivity.class));
+                } else if (itemId == R.id.nav_settings) {
+                    openScreen(new Intent(MainActivity.this, SettingsActivity.class));
+                }
+                return true;
+            }
+        });
+    }
+
+    private void openScreen(Intent intent) {
+        startActivity(intent);
+        finish();
+        overridePendingTransition(0, 0);
     }
 
     private void loadPantryList() {
