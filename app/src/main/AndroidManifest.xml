@@ -15,6 +15,9 @@
             android:name=".SuggestedRecipesActivity"
             android:exported="false" />
         <activity
+            android:name=".AllRecipesActivity"
+            android:exported="false" />
+        <activity
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         almostRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         databaseHelper = new DatabaseHelper(this);
+        setUpBrowseButton();
         setUpNavigation();
     }
 
@@ -50,6 +52,19 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadSuggestedRecipes();
+    }
+
+    private void setUpBrowseButton() {
+        Button browseButton = findViewById(R.id.browseButton);
+
+        // Open all recipes
+        browseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SuggestedRecipesActivity.this, AllRecipesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setUpNavigation() {

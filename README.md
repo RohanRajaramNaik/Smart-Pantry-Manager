@@ -16,6 +16,7 @@ Many households throw away food every week. Some of it goes off before it is use
 - See an "Almost There" list of recipes that are missing just one ingredient
 - View the ingredients and steps for each recipe
 - See which ingredients you have, need more of, or are missing
+- Browse all recipes, sorted by how close you are to making each one
 - Turn expiry alerts and the Almost There list on or off in Settings
 - Move between screens with a bottom navigation bar
 - Get a clear message when a form has empty or wrong input
