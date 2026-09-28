@@ -2,6 +2,7 @@ package com.example.smartpantrymanager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,11 @@ import java.util.ArrayList;
 public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryViewHolder> {
 
     private ArrayList<PantryItem> pantryList;
+    private boolean showAlerts;
 
-    public PantryAdapter(ArrayList<PantryItem> pantryList) {
+    public PantryAdapter(ArrayList<PantryItem> pantryList, boolean showAlerts) {
         this.pantryList = pantryList;
+        this.showAlerts = showAlerts;
     }
 
     public static class PantryViewHolder extends RecyclerView.ViewHolder {
@@ -24,12 +27,14 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         TextView nameText;
         TextView quantityText;
         TextView expiryText;
+        int normalColor;
 
         public PantryViewHolder(View itemView) {
             super(itemView);
             nameText = itemView.findViewById(R.id.nameText);
             quantityText = itemView.findViewById(R.id.quantityText);
             expiryText = itemView.findViewById(R.id.expiryText);
+            normalColor = expiryText.getCurrentTextColor();
         }
     }
 
@@ -72,9 +77,30 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         // Hide if empty
         if (expiryDate == null || expiryDate.isEmpty()) {
             holder.expiryText.setVisibility(View.GONE);
-        } else {
-            holder.expiryText.setVisibility(View.VISIBLE);
-            holder.expiryText.setText("Expires: " + expiryDate);
+            return;
+        }
+
+        // Normal look
+        holder.expiryText.setVisibility(View.VISIBLE);
+        holder.expiryText.setText("Expires: " + expiryDate);
+        holder.expiryText.setTextColor(holder.normalColor);
+
+        // Alert look
+        if (showAlerts) {
+            showAlert(holder, item.getExpiryStatus());
+        }
+    }
+
+    private void showAlert(PantryViewHolder holder, int status) {
+        String text = holder.expiryText.getText().toString();
+
+        // Red text
+        if (status == PantryItem.EXPIRY_SOON) {
+            holder.expiryText.setText(text + " (expires soon)");
+            holder.expiryText.setTextColor(Color.parseColor("#C62828"));
+        } else if (status == PantryItem.EXPIRY_PASSED) {
+            holder.expiryText.setText(text + " (expired)");
+            holder.expiryText.setTextColor(Color.parseColor("#C62828"));
         }
     }
 

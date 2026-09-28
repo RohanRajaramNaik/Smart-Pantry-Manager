@@ -1,6 +1,7 @@
 package com.example.smartpantrymanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         setUpNavigation();
+        showExpiryToast();
     }
 
     @Override
@@ -84,11 +86,45 @@ public class MainActivity extends AppCompatActivity {
         try {
             // Load from database
             ArrayList<PantryItem> pantryList = databaseHelper.getAllPantryItems();
-            pantryRecyclerView.setAdapter(new PantryAdapter(pantryList));
+            pantryRecyclerView.setAdapter(new PantryAdapter(pantryList, alertsAreOn()));
             showEmptyMessage(pantryList.size());
         } catch (Exception e) {
             Toast.makeText(this, "Could not load pantry", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private boolean alertsAreOn() {
+        SharedPreferences settings = getSharedPreferences("pantry_settings", MODE_PRIVATE);
+        return settings.getBoolean("expiry_alerts", true);
+    }
+
+    private void showExpiryToast() {
+        // Alerts off
+        if (!alertsAreOn()) {
+            return;
+        }
+
+        try {
+            // One message
+            int soonCount = countExpiringSoon(databaseHelper.getAllPantryItems());
+            if (soonCount > 0) {
+                Toast.makeText(this, soonCount + " item(s) expiring soon", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Could not check expiry dates", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int countExpiringSoon(ArrayList<PantryItem> pantryList) {
+        int soonCount = 0;
+
+        // Count soon items
+        for (int i = 0; i < pantryList.size(); i++) {
+            if (pantryList.get(i).getExpiryStatus() == PantryItem.EXPIRY_SOON) {
+                soonCount++;
+            }
+        }
+        return soonCount;
     }
 
     private void showEmptyMessage(int itemCount) {
