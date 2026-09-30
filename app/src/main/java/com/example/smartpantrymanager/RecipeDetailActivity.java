@@ -18,7 +18,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
     private TextView summaryText;
     private TextView stepsText;
     private LinearLayout ingredientsContainer;
+    private Button cookButton;
     private DatabaseHelper databaseHelper;
+    private Recipe currentRecipe;
+    private boolean waitingForConfirm;
     private int recipeId;
 
     @Override
@@ -31,11 +34,67 @@ public class RecipeDetailActivity extends AppCompatActivity {
         summaryText = findViewById(R.id.summaryText);
         stepsText = findViewById(R.id.stepsText);
         ingredientsContainer = findViewById(R.id.ingredientsContainer);
+        cookButton = findViewById(R.id.cookButton);
 
         // Set up screen
         databaseHelper = new DatabaseHelper(this);
+        setUpCookButton();
         setUpBackButton();
         checkRecipeId();
+    }
+
+    private void setUpCookButton() {
+        // Tap handler
+        cookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handleCookTap();
+            }
+        });
+    }
+
+    private void handleCookTap() {
+        if (currentRecipe == null) {
+            return;
+        }
+
+        // First tap asks
+        if (!waitingForConfirm) {
+            waitingForConfirm = true;
+            cookButton.setText("Tap again to confirm");
+            return;
+        }
+
+        // Second tap cooks
+        waitingForConfirm = false;
+        cookNow();
+    }
+
+    private void cookNow() {
+        try {
+            // Update pantry
+            boolean cooked = RecipeCooker.cookRecipe(databaseHelper, currentRecipe);
+            if (cooked) {
+                Toast.makeText(this, "Pantry updated", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Missing ingredients", Toast.LENGTH_SHORT).show();
+            }
+            loadRecipe();
+        } catch (Exception e) {
+            Toast.makeText(this, "Could not update pantry", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showCookButton(boolean canCook) {
+        waitingForConfirm = false;
+        cookButton.setEnabled(canCook);
+
+        // Pick text
+        if (canCook) {
+            cookButton.setText("I cooked this");
+        } else {
+            cookButton.setText("Missing ingredients");
+        }
     }
 
     @Override
@@ -83,9 +142,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     private void showRecipe(Recipe recipe, ArrayList<PantryItem> pantry) {
+        currentRecipe = recipe;
         recipeNameText.setText(recipe.getName());
         stepsText.setText(recipe.getSteps());
         showIngredients(recipe.getIngredients(), pantry);
+        showCookButton(IngredientMatcher.canMake(recipe, pantry));
     }
 
     private void showIngredients(ArrayList<RecipeIngredient> ingredients,

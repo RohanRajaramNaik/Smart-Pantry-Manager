@@ -80,8 +80,8 @@
 
     <!-- Buttons -->
     <style name="AppButton" parent="Widget.Material3.Button">
-        <item name="backgroundTint">@color/accent</item>
-        <item name="android:textColor">@color/on_accent</item>
+        <item name="backgroundTint">@color/button_tint</item>
+        <item name="android:textColor">@color/button_text</item>
         <item name="android:textSize">@dimen/text_button</item>
         <item name="android:minHeight">@dimen/button_height</item>
         <item name="cornerRadius">@dimen/button_corner</item>

@@ -17,6 +17,7 @@ Many households throw away food every week. Some of it goes off before it is use
 - View the ingredients and steps for each recipe
 - See which ingredients you have, need more of, or are missing
 - Browse all recipes, sorted by how close you are to making each one
+- Cook a recipe with one tap and have its ingredients taken out of your pantry
 - Turn expiry alerts and the Almost There list on or off in Settings
 - See a home dashboard with your item count, recipes you can make and items that expire soon
 - Move between screens with a bottom navigation bar

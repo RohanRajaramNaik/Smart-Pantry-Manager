@@ -130,9 +130,15 @@ public class IngredientMatcher {
     public static double getPantryAmountInUnit(RecipeIngredient ingredient,
                                                ArrayList<PantryItem> pantry) {
         double baseAmount = pantryAmountFor(ingredient, pantry);
-        double oneUnit = toBaseAmount(1, ingredient.getUnit());
 
         // Back to recipe unit
+        return fromBaseAmount(baseAmount, ingredient.getUnit());
+    }
+
+    public static double fromBaseAmount(double baseAmount, String unit) {
+        double oneUnit = toBaseAmount(1, unit);
+
+        // Divide by size
         if (oneUnit == 0) {
             return 0;
         }
