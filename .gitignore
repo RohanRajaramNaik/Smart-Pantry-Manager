@@ -15,3 +15,13 @@ captures/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Screenshot walkthroughs
+screenshots/
+*.zip
+
+# Screen recordings
+recordings/
+
+# Video build tooling (Playwright, node_modules, temp assets)
+video_tools/
